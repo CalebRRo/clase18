@@ -1,4 +1,5 @@
 const autos = require("./autos.json")
+const personas = require ("./personas.json")
 
 const concesionaria = {
     autos,
@@ -27,8 +28,15 @@ const concesionaria = {
     totalDeVentas : function () {
         let autosVendidos = this.listaDeVenta();
         return autosVendidos.length !== 0 ? autosVendidos.reduce((acum,num) => acum + num ) : 0;
+    },
+    puedeComprar  : function(patente,persona) {
+        let auto = this.autos.find(auto => auto.patente === patente && !auto.vendido)
+        
+        return auto.precio <= persona.capacidadDePagoTotal && (auto.precio / auto.cuotas)
+         <= persona.capacidadDePagoEnCuotas
+        
     }
 
 }
 
-console.log(concesionaria.listaDeVenta());
+console.log(concesionaria.puedeComprar("APL123",personas[0]));
