@@ -29,14 +29,19 @@ const concesionaria = {
         let autosVendidos = this.listaDeVenta();
         return autosVendidos.length !== 0 ? autosVendidos.reduce((acum,num) => acum + num ) : 0;
     },
-    puedeComprar  : function(patente,persona) {
-        let auto = this.autos.find(auto => auto.patente === patente && !auto.vendido)
-        
+    puedeComprar : function(auto,persona) { 
         return auto.precio <= persona.capacidadDePagoTotal && (auto.precio / auto.cuotas)
          <= persona.capacidadDePagoEnCuotas
         
+    },
+    autosQuePuedeComprar : function (persona){
+        let autosDisponibles = this.autosParaLaVenta()
+        let listaParaLaVenta = autosDisponibles.filter(autosDisponibles => this.puedeComprar(autosDisponibles,persona))
+        return listaParaLaVenta
+        
     }
-
+    
 }
 
-console.log(concesionaria.puedeComprar("APL123",personas[0]));
+
+console.log(concesionaria.autosQuePuedeComprar(personas[1]));

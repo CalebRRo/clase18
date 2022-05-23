@@ -11,6 +11,18 @@
         "vendido" : true
     },
     {
+        "marca" : "ford",
+        "modelo" : "ka",
+        "precio" : 200000,
+        "km" : 0,
+        "color" : "Rojo",
+        "cuotas" : 12,
+        "anio" : 2019,
+        "patente" : "APL124",
+        "vendido" : false
+
+    },
+    {
         "marca" : "Toyota",
         "modelo" : "Corolla",
         "precio" : 100000,
